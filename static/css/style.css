@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: poppins;
+  background-image: url(https://s3-alpha-sig.figma.com/img/4017/c20a/76b834cad4b494a9306f23e1f2d345ec?Expires=1626048000&Signature=Lf0eDOgQh5X4v1gQ2a6kTjWXVbpNpZVW6NwX8cX2OiINLhy7TCTr8i-tt-xfa811C5Co8Peez6X5Q2RFXlPi~wbZeMAadHSOJnaHdqyA9zSoi0F7pFI7Q8-LkL9m92DL11jR8bryJ4vxQsTVv-SIbzQsEnZctSz6fr9cmAIy-eBAezBd82khd3Q5o73afUKYfTg6f8all-3IQK-eaeLrDoIP8oBmuPbkFa46Ml9Zh3Ydb~J8YSM2SB5x9ozFl9oqlrAryb1CfzDAvuOzV5B59VutMV6I2wQNLS5qZ8vqxDHDl93hWXo8KcPeCdZa~vfsc4WHKWqgt3tDmOfhg9kl0w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+form {
+  position: absolute;
+  top: 30%;
+  left: 33%;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 30%;
+  border-radius: 15px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+
+button {
+  align-self: center;
+  font-weight: bold;
+  display: inline-block;
+  padding: 18px 25px;
+  border: 0;
+  text-decoration: none;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+input {
+  width: 80%;
+  outline: none;
+  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 10px;
+  padding-left: 40px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
