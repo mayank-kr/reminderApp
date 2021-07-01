@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<form action="/" method="POST">
+    {% for reminder in reminders %}
+    <div>
+        <p>This is your reminder: {{reminder.reminderName}}</p>
+        <p>You want to be reminded at this time: {{reminder.reminderTime}}</p>
+        <!-- <p>Time left: {{now-reminder.currentTime}}</p> -->
+    <br></div>
+    {% endfor %}
+<input type="submit" value="Add a reminder">
+</form>
+
+{% endblock %}

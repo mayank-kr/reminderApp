@@ -25,9 +25,16 @@ class reminders(db.Model):
         self.reminderTime = rtime
         self.currentTime = ctime
 
-# home page. reminders are added here 
+# home page.
 @app.route("/", methods=["POST","GET"])
 def home():
+    if request.method == "POST":
+        return redirect(url_for("add"))
+    return render_template("home.html",reminders=reminders.query.all(),now=datetime.now())
+
+# add reminder page. reminders are added here 
+@app.route("/add", methods=["POST","GET"])
+def add():
     if request.method == "POST":
         reminderName = request.form["rname"]
         reminderTime = request.form["time"]
@@ -35,15 +42,15 @@ def home():
         reminder = reminders(reminderName,reminderTime,currentTime)
         db.session.add(reminder)
         db.session.commit()
-        return redirect(url_for("view"))
-    return render_template("index.html")
+        return redirect(url_for("view",name=reminderName,time=reminderTime))
+    return render_template("add.html")
 
 # view reminders page.
 @app.route("/view", methods=["POST","GET"])
 def view():
     if request.method == "POST":
         return redirect(url_for("home"))
-    return render_template("view.html",reminders=reminders.query.all(),now=datetime.now())
+    return render_template("view.html",name=request.args.get("name"),time=request.args.get('time'))
 
 # run the app
 if __name__ == "__main__":
