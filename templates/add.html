@@ -2,11 +2,13 @@
 
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<form action="#" method="POST">
+<form action="/add" method="POST">
     <p>What would you like to set a reminder for?</p>
     <input type="text" id="rname" name="rname" required>
     <p>When would you like to be reminded?</p>
     <input type="text" id="time" name="time" required></input>
+    <input type="date" value="2021-07-03" id="d" name="d" required>
+    <input type="time" id="t" name="t" required>
     <br><br>
     <button type="submit" value="Submit">Submit</button>
 </form>

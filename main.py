@@ -42,7 +42,9 @@ def add():
         reminder = reminders(reminderName,reminderTime,currentTime)
         db.session.add(reminder)
         db.session.commit()
-        return redirect(url_for("view",name=reminderName,time=reminderTime))
+        da = request.form["d"]
+        ta = request.form["t"]
+        return redirect(url_for("view",name=reminderName,time=reminderTime,d=str(da),t=ta))
     return render_template("add.html")
 
 # view reminders page.
