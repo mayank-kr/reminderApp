@@ -18,19 +18,19 @@ class reminders(db.Model):
     _id = db.Column("id",db.Integer,primary_key=True)
     reminderName = db.Column("name",db.String(100))
     reminderTime = db.Column("time",db.String(100)) # the time to be reminded
-    currentTime = db.Column(DateTime, default=None) # the time the reminder was made 
+    remindAt = db.Column(DateTime, default=None) # the time the reminder was made 
     
-    def __init__(self, name, rtime, ctime):
+    def __init__(self, name, rtime, time):
         self.reminderName = name
         self.reminderTime = rtime
-        self.currentTime = ctime
+        self.remindAt = time
 
 # home page.
 @app.route("/", methods=["POST","GET"])
 def home():
     if request.method == "POST":
         return redirect(url_for("add"))
-    return render_template("home.html",reminders=reminders.query.all(),now=datetime.now())
+    return render_template("home.html",reminders=reminders.query.all())
 
 # add reminder page. reminders are added here 
 @app.route("/add", methods=["POST","GET"])
@@ -40,11 +40,11 @@ def add():
         d = request.form["d"]
         t = request.form["t"]
         dt = d + ' ' + t
-        currentTime = datetime.strptime(dt, "%Y-%m-%d %H:%M")
-        reminder = reminders(reminderName,dt,currentTime)
+        remindAt = datetime.strptime(dt, "%Y-%m-%d %H:%M")
+        reminder = reminders(reminderName,dt,remindAt)
         db.session.add(reminder)
         db.session.commit()
-        return redirect(url_for("view",name=reminderName,time=str(currentTime)))
+        return redirect(url_for("view",name=reminderName,time=str(remindAt)))
     return render_template("add.html")
 
 # view reminders page.

@@ -6,8 +6,7 @@
     {% for reminder in reminders %}
     <div>
         <p>This is your reminder: {{reminder.reminderName}}</p>
-        <p>You want to be reminded at this time: {{reminder.reminderTime}}</p>
-        <!-- <p>Time left: {{now-reminder.currentTime}}</p> -->
+        <p>You want to be reminded at this time: {{reminder.remindAt}}</p>
     <br></div>
     {% endfor %}
 <input type="submit" value="Add a reminder">
