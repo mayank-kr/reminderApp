@@ -1,13 +1,27 @@
 {% extends "base.html" %}
 {% block title %}View Page{% endblock %}
 
+{% block flashing %}
+    {% with messages = get_flashed_messages()%}
+        {% if messages %}
+            {% for msg in messages %}
+
+                <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {{msg}}
+                </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
+
 <form action="/view" method="POST">
     <div>
         <p>This is your reminder: {{name}}</p>
         <p>You want to be reminded at this time: {{time}}</p>
-        <p>date: {{d}}</p>
-        <p>time: {{t}}</p>
     <br></div>
 <input type="submit" value="Return">
 </form>

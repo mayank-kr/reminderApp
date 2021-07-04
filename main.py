@@ -2,10 +2,10 @@
 # Authors: Sharon, Hailey, Mayank
 
 # import modules
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # app configurations 
 app = Flask(__name__)
@@ -37,14 +37,14 @@ def home():
 def add():
     if request.method == "POST":
         reminderName = request.form["rname"]
-        reminderTime = request.form["time"]
-        currentTime = datetime.now()
-        reminder = reminders(reminderName,reminderTime,currentTime)
+        d = request.form["d"]
+        t = request.form["t"]
+        dt = d + ' ' + t
+        currentTime = datetime.strptime(dt, "%Y-%m-%d %H:%M")
+        reminder = reminders(reminderName,dt,currentTime)
         db.session.add(reminder)
         db.session.commit()
-        da = request.form["d"]
-        ta = request.form["t"]
-        return redirect(url_for("view",name=reminderName,time=reminderTime,d=str(da),t=ta))
+        return redirect(url_for("view",name=reminderName,time=str(currentTime)))
     return render_template("add.html")
 
 # view reminders page.
