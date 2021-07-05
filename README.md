@@ -1,6 +1,6 @@
 # reminderApp:clock2:
 
-reminderApp is a Python web app that utilizes Flask and (some more stuff here) to set reminders and send pop up notifications.
+reminderApp is a Python web app that utilizes Flask and SQLAlchemy to set reminders and send pop up notifications. It maintains a very simple user interface: users can quickly view and modify existing reminders through the landing page, and then use the add reminder button to add a new reminder. 
 
 &nbsp;  
 
