@@ -18,12 +18,6 @@ Ensure that flask is downloaded and running!
 
 &nbsp;  
 
-## Usage
-
-(insert screenshots of the app running here)
-
-&nbsp;  
-
 ## Authors and Acknowledgement
 
 #### **Mayank Kumar**  
