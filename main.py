@@ -18,7 +18,7 @@ class reminders(db.Model):
     _id = db.Column("id",db.Integer,primary_key=True)
     reminderName = db.Column("name",db.String(100))
     reminderTime = db.Column("time",db.String(100)) # the time to be reminded
-    remindAt = db.Column(DateTime, default=None) # the time the reminder was made 
+    remindAt = db.Column(DateTime, default=None)
     
     def __init__(self, name, rtime, time):
         self.reminderName = name
@@ -53,6 +53,37 @@ def view():
     if request.method == "POST":
         return redirect(url_for("home"))
     return render_template("view.html",name=request.args.get("name"),time=request.args.get('time'))
+
+# reminders are updated here
+
+
+@app.route('/update/<int:_id>', methods=['GET', 'POST'])
+def update(_id):
+    if request.method == 'POST':
+        reminderName = request.form["rname"]
+        d = request.form["d"]
+        t = request.form["t"]
+        dt = d + ' ' + t
+        remindAt = datetime.strptime(dt, "%Y-%m-%d %H:%M")
+        reminder = reminders.query.filter_by(_id=_id).first()
+        reminder.reminderName = reminderName
+        reminder.reminderTime = remindAt
+        db.session.add(reminder)
+        db.session.commit()
+        return redirect("/")
+
+    reminder = reminders.query.filter_by(_id=_id).first()
+    return render_template('update.html', reminder=reminder)
+
+# reminders are deleted here
+
+
+@app.route('/delete/<int:_id>')
+def delete(_id):
+    reminder = reminders.query.filter_by(_id=_id).first()
+    db.session.delete(reminder)
+    db.session.commit()
+    return redirect("/")
 
 # run the app
 if __name__ == "__main__":

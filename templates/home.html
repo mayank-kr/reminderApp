@@ -2,14 +2,47 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<form action="/" method="POST">
-    {% for reminder in reminders %}
-    <div>
-        <p>This is your reminder: {{reminder.reminderName}}</p>
-        <p>You want to be reminded at this time: {{reminder.remindAt}}</p>
-    <br></div>
-    {% endfor %}
-<input type="submit" value="Add a reminder">
-</form>
 
+<div class="container">
+    <h2>Your Reminders</h2>
+
+    {% if reminders|length == 0 %}
+
+    <div class="alert">
+        No Reminders found. Add your first reminder now!
+    </div>
+    {% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Reminder</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for reminder in reminders %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{reminder.reminderName}}</td>
+                <td>{{reminder.remindAt}}</td>
+                <td>
+                    <a class="button" href="/update/{{reminder._id}}" type="button">Update</button>
+                        <a class="button" href="/delete/{{reminder._id}}" type="button">Delete</button>
+                            
+                        </td>
+                    </tr>
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            
+            
+        </div>
+        <form action="/" method="POST">
+        <input type="submit" value="Add a reminder">
+        </form>
 {% endblock %}
